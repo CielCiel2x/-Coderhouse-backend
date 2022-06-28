@@ -15,7 +15,7 @@ class User {
     }
 
     getBooks() {
-        return this.books;
+        return this.books.map(book => `${book.bookTitle}`);
     }
 
     addPets(pet) {
