@@ -18,7 +18,7 @@ class Container {
 
 
         catalogue.push(object);
-        await fs.writeFile(this.filePath, JSON.stringify(catalogue), (err) => {
+        await fs.writeFile(this.filePath, JSON.stringify(catalogue, null, 2), (err) => {
             if (err) {
                 console.log("error writing the file")
             }
@@ -43,18 +43,18 @@ class Container {
         const catalogue = JSON.parse(data);
         const index = await catalogue.findIndex(product => product.id === id);
         catalogue.splice(index, 1);
-        fs.writeFile(this.filePath, JSON.stringify(catalogue), (err) => {
+        fs.writeFile(this.filePath, JSON.stringify(catalogue, null, 2), (err) => {
             if (err) {
                 console.log("error writing the file")
             }
         });
     }
 
-    deleteAll() {
+    async deleteAll() {
         const data = await fs.promises.readFile(this.filePath, "utf-8")
         const catalogue = JSON.parse(data);
         await catalogue.splice(0, catalogue.length);
-        fs.writeFile(this.filePath, JSON.stringify(catalogue), (err) => {
+        fs.writeFile(this.filePath, JSON.stringify(catalogue, null, 2), (err) => {
             if (err) {
                 console.log("error writing the file")
             }
