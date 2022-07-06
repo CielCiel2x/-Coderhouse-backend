@@ -5,8 +5,8 @@ class Container {
         this.filePath = filePath;
     }
 
-    save(object) {
-        const data = fs.readFileSync(this.filePath, "utf-8")
+    async save(object) {
+        const data = await fs.promises.readFile(this.filePath, "utf-8")
         const catalogue = JSON.parse(data);
 
         if (catalogue.length === 0) {
@@ -18,7 +18,7 @@ class Container {
 
 
         catalogue.push(object);
-        fs.writeFile(this.filePath, JSON.stringify(catalogue), (err) => {
+        await fs.writeFile(this.filePath, JSON.stringify(catalogue), (err) => {
             if (err) {
                 console.log("error writing the file")
             }
@@ -26,22 +26,22 @@ class Container {
         return object.id;
     }
 
-    getById(id) {
-        const data = fs.readFileSync(this.filePath, "utf-8")
+    async getById(id) {
+        const data = await fs.promises.readFile(this.filePath, "utf-8")
         const catalogue = JSON.parse(data);
         return catalogue.find(product => product.id === id);
     }
 
-    getAll() {
-        const data = fs.readFileSync(this.filePath, "utf-8");
+    async getAll() {
+        const data = await fs.promises.readFile(this.filePath, "utf-8");
         const catalogue = JSON.parse(data);
         return catalogue;
     }
 
-    deleteById(id) {
-        const data = fs.readFileSync(this.filePath, "utf-8")
+    async deleteById(id) {
+        const data = await fs.promises.readFile(this.filePath, "utf-8")
         const catalogue = JSON.parse(data);
-        const index = catalogue.findIndex(product => product.id === id);
+        const index = await catalogue.findIndex(product => product.id === id);
         catalogue.splice(index, 1);
         fs.writeFile(this.filePath, JSON.stringify(catalogue), (err) => {
             if (err) {
@@ -51,9 +51,9 @@ class Container {
     }
 
     deleteAll() {
-        const data = fs.readFileSync(this.filePath, "utf-8")
+        const data = await fs.promises.readFile(this.filePath, "utf-8")
         const catalogue = JSON.parse(data);
-        catalogue.splice(0, catalogue.length);
+        await catalogue.splice(0, catalogue.length);
         fs.writeFile(this.filePath, JSON.stringify(catalogue), (err) => {
             if (err) {
                 console.log("error writing the file")
@@ -77,6 +77,6 @@ plushies.save({
 
 /* console.log(plushies.getAll()); */
 
-/* plushies.deleteById(2);  */
+/*  plushies.deleteById(2); */
 
 /* plushies.deleteAll(); */
