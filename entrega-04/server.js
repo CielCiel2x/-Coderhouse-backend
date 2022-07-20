@@ -1,5 +1,5 @@
 const express = require('express');
-const {Router } = express;
+const { Router } = express;
 const app = express();
 const PORT = process.env.PORT || 8080;
 
@@ -10,7 +10,7 @@ let productsArray = [];
 const routerProducts = Router();
 
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static("public"));
 
@@ -46,9 +46,10 @@ routerProducts.post("/", async (req, res) => {
 
 routerProducts.put("/:id", async (req, res) => {
     const productsList = await new Container("./products.json");
-    const newProduct = await req.body;
+    let oldProduct= await productsList.getById(parseInt(req.params.id));
+    let newProduct = await req.body;
     await productsList.update(parseInt(req.params.id), newProduct);
-    res.send(newProduct);
+        res.send(`the product "${oldProduct.title}" was updated to "${newProduct.title}"`);
 })
 
 
