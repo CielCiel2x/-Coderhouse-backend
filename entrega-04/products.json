@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Bulbasaur plushie | after put",
+    "price": 10101010,
+    "thumbnail": "https://d3ugyf2ht6aenh.cloudfront.net/stores/110/201/products/peluche-bulbasaur-sun-and-moon1-767ef454b585a3109716559338282190-1024-1024.jpg",
+    "id": 1
+  },
+  {
+    "title": "Psyduck plushie",
+    "price": 222.22,
+    "thumbnail": "https://d3ugyf2ht6aenh.cloudfront.net/stores/110/201/products/peluche-psyduck-san-ei1-15a6b20d895f9d143d16559329861706-1024-1024.jpg",
+    "id": 2
+  },
+  {
+    "title": "Cyndaquil plushie",
+    "price": 333.33,
+    "thumbnail": "https://d3ugyf2ht6aenh.cloudfront.net/stores/110/201/products/peluche-bayas-cynda1-f3fa15e5d3c31839d816546382427077-1024-1024.jpg",
+    "id": 3
+  }
+]
